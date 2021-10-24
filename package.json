@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "apidoc": "^0.50.0",
     "nodemon": "^2.0.13"
   },
   "dependencies": {
