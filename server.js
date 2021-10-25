@@ -1,26 +1,23 @@
-require('dotenv').config();
-
 const express = require('express');
 const connectDB = require('./config/connectDB');
-
 const app = express();
-const bodyParser = require('body-parser')
-const port = parseInt(process.env.PORT) || 8000
+const bodyParser = require('body-parser');
 
-// Import routers
-var pathRouter = require('./routers/router');
+const PORT = process.env.PORT || 8000;
+
 
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 
-// path 
-app.use('/api/', pathRouter);
-
-
+// Connect database
 connectDB();
 
-app.listen(port, () => {
-    console.log(`Listening at: http://localhost:${port}`)
+// path 
+app.use('/api/', require('./routers/router'));
+
+
+app.listen(PORT, () => {
+    console.log(`Listening at: http://localhost:${PORT}`)
 })
 
 
