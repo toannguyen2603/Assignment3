@@ -15,8 +15,15 @@ app.use(bodyParser.json())
 // Connect database
 connectDB();
 
+app.get('/', (req, res) => {
+    res.json('Hello world!')
+})
+
 // path 
 app.use('/api/', require('./routers/router'));
+
+// use the express-static middleware
+app.use(express.static("public"))
 
 
 const specs = swaggerJsdoc(require('./api-docs/option'));
