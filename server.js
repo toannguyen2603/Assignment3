@@ -3,6 +3,9 @@ const connectDB = require('./config/connectDB');
 const app = express();
 const bodyParser = require('body-parser');
 
+const swaggerJsdoc = require("swagger-jsdoc");
+const swaggerUi = require("swagger-ui-express");
+
 const PORT = process.env.PORT || 8000;
 
 
@@ -14,6 +17,10 @@ connectDB();
 
 // path 
 app.use('/api/', require('./routers/router'));
+
+
+const specs = swaggerJsdoc(require('./api-docs/option'));
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(specs,{ explorer: true }));
 
 
 app.listen(PORT, () => {
