@@ -1,12 +1,14 @@
 const express = require('express');
 const connectDB = require('./config/connectDB');
 const app = express();
+
+const PORT = process.env.PORT || 8000;
+
 const bodyParser = require('body-parser');
 
 const swaggerJsdoc = require("swagger-jsdoc");
 const swaggerUi = require("swagger-ui-express");
 
-const PORT = process.env.PORT || 8000;
 
 
 app.use(bodyParser.urlencoded({ extended: true }))
