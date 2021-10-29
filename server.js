@@ -23,7 +23,7 @@ app.get('/', (req, res) => {
 })
 
 // path 
-app.use('/api/', require('./routers/router'));
+app.use('/', require('./routers/router'));
 
 // use the express-static middleware
 app.use(express.static("public"))
