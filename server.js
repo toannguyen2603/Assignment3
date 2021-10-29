@@ -1,5 +1,6 @@
 const express = require('express');
 const connectDB = require('./config/connectDB');
+const cors = require('./cors/index');
 const app = express();
 
 const PORT = process.env.PORT || 8000;
@@ -16,6 +17,9 @@ app.use(bodyParser.json())
 
 // Connect database
 connectDB();
+
+// Configuring CORS
+app.use(cors);
 
 app.get('/', (req, res) => {
     res.json('Hello world!')
