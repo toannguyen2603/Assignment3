@@ -4,19 +4,21 @@ const app = express();
 
 const PORT = process.env.PORT || 8000;
 
-const bodyParser = require('body-parser');
+const bodyParser = require("body-parser");
 
 const swaggerJsdoc = require("swagger-jsdoc");
 const swaggerUi = require("swagger-ui-express");
 
-
-const cors = require("cors");
-const corsOptions = {
-  origin: "http://localhost:3000",
-  credentials: true, //access-control-allow-credentials:true
-  optionSuccessStatus: 200,
-};
-app.use(cors(corsOptions));
+app.use(function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Credentials", true);
+  res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,OPTIONS");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin,X-Requested-With,Content-Type,Accept,content-type,application/json",
+  );
+  next();
+});
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -24,22 +26,12 @@ app.use(bodyParser.json());
 // Connect database
 connectDB();
 
-<<<<<<< HEAD
 app.get("/", (req, res) => {
   res.json("Hello world!");
 });
 
 // path
-app.use("/api/", require("./routers/router"));
-=======
-
-app.get('/', (req, res) => {
-    res.json('Hello world!')
-})
-
-// path 
-app.use('/', require('./routers/router'));
->>>>>>> 78e481ec8f73f2e56ce562f7baf01d2f23d55926
+app.use("/", require("./routers/router"));
 
 // use the express-static middleware
 app.use(express.static("public"));
