@@ -14,7 +14,7 @@ module.exports = options = {
         },
         servers: [
         {
-            url: "http://localhost:8000/api",
+            url: "https://assignment3-api-docs.herokuapp.com",
         },
         ],
     },

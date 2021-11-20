@@ -1,12 +1,14 @@
 const express = require("express");
 const connectDB = require("./config/connectDB");
 const app = express();
-const bodyParser = require("body-parser");
+
+const PORT = process.env.PORT || 8000;
+
+const bodyParser = require('body-parser');
 
 const swaggerJsdoc = require("swagger-jsdoc");
 const swaggerUi = require("swagger-ui-express");
 
-const PORT = process.env.PORT || 8000;
 
 const cors = require("cors");
 const corsOptions = {
@@ -22,12 +24,22 @@ app.use(bodyParser.json());
 // Connect database
 connectDB();
 
+<<<<<<< HEAD
 app.get("/", (req, res) => {
   res.json("Hello world!");
 });
 
 // path
 app.use("/api/", require("./routers/router"));
+=======
+
+app.get('/', (req, res) => {
+    res.json('Hello world!')
+})
+
+// path 
+app.use('/', require('./routers/router'));
+>>>>>>> 78e481ec8f73f2e56ce562f7baf01d2f23d55926
 
 // use the express-static middleware
 app.use(express.static("public"));
